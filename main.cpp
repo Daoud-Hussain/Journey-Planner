@@ -4,14 +4,14 @@
 using namespace std;
 
 //Variables to store number of alternative paths
-int alternatePaths=2;
-int N = 2;
+int alternatePaths=5;
+int N = 5;
 
 //Variables to store number of alternative and shortest paths
 vector<vector<int>> shortest_path;
 vector<vector<int>> alternative_paths;
 
-string branches[16] = {"Islamabad","Karachi","Lahore","Faislabad","Gujranwala","Sahiwal","Sargodha","Multan", "DG Khan" ,"Sialkot","Jehlum", "Rawlakot", "Hydrabad", "Quetta", "Peshawar", "Chakwal"};
+string branches[16] = {"Islamabad","Chakwal","Karachi","Lahore","Faislabad","Gujranwala","Sahiwal","Sargodha","Multan", "DG Khan" ,"Sialkot","Jehlum", "Rawlakot", "Hydrabad", "Quetta", "Peshawar"};
 struct JourneyList
 {
     string name;                         // Variable to store Passenger name
@@ -24,23 +24,22 @@ JourneyList* first;
 JourneyList* last;
 
 // Working functions
-void askForJourney()
+void askForJourney(JourneyList* newJourney)
 {   
-    JourneyList *newJourney = new JourneyList();
+    // JourneyList *newJourney = new JourneyList();
     //Incase of empty nodes (No Journeys)
     if(first == NULL){
-        int choice, option;
-        bool flag = true;
+        // int choice, option;
         
-        cout<< "************* Journey Details: ****************\n";
-        cout<<"Enter passenger name: ";
-        cin>>newJourney->name;
-        cout<<"Enter passenger phone: ";
-        cin>>newJourney->phone;
-        cout<<"Enter passenger Source: ";
-        cin>>newJourney->source;
-        cout<<"Enter passenger destination: ";
-        cin>>newJourney->destination;
+        // cout<< "************* Journey Details: ****************\n";
+        // cout<<"Enter passenger name: ";
+        // cin>>newJourney->name;
+        // cout<<"Enter passenger phone: ";
+        // cin>>newJourney->phone;
+        // cout<<"Enter passenger Source: ";
+        // cin>>newJourney->source;
+        // cout<<"Enter passenger destination: ";
+        // cin>>newJourney->destination;
 
         //Linking linkedlist nodes
         newJourney->next = NULL;
@@ -49,18 +48,18 @@ void askForJourney()
     }
 
     else {
-        int choice, option;
-        bool flag = true;
+        // int choice, option;
+        // bool flag = true;
         
-        cout<< "************* Journey Details: ****************\n";
-        cout<<"Enter passenger name: ";
-        cin>>newJourney->name;
-        cout<<"Enter passenger phone: ";
-        cin>>newJourney->phone;
-        cout<<"Enter passenger Source: ";
-        cin>>newJourney->source;
-        cout<<"Enter passenger destination: ";
-        cin>>newJourney->destination;
+        // cout<< "************* Journey Details: ****************\n";
+        // cout<<"Enter passenger name: ";
+        // cin>>newJourney->name;
+        // cout<<"Enter passenger phone: ";
+        // cin>>newJourney->phone;
+        // cout<<"Enter passenger Source: ";
+        // cin>>newJourney->source;
+        // cout<<"Enter passenger destination: ";
+        // cin>>newJourney->destination;
 
         //Linking linkedlist nodes
         last->next = newJourney;
@@ -315,30 +314,40 @@ int main()
         if(option == 1){
             // Passenger credentials
             // askForJourney();
-            // cout << "Enter your destination: "<<endl;
-            // cout << "1. For A   |  2. For B "<<endl;
-            // cout << "3. For C   |  4. For D"<<endl;
-            // cout << "5. For E   |  6. For F"<<endl;
-            // cout << "7. For G   |  8. For I"<<endl;
-            // cout << "9. For J   |  10. For K"<<endl;
-            // cout << "11. For L  |  12. For M"<<endl;
-            // cout << "13. For N  |  14. For O"<<endl;
-            // cout << "15. For P  | Your choice: ";
-            // int a;
-            // cin >> a;
-            // destIndex.push_back(a);
             // cout<<endl<<endl;
             
+            JourneyList *newJourney = new JourneyList();
+            int choice, option;
+            
+            cout<< "************* Journey Details: ****************\n";
+            cout<<"Enter passenger name: ";
+            cin>>newJourney->name;
+            cout<<"Enter passenger phone: ";
+            cin>>newJourney->phone;
+            cout << "Enter your destination: "<<endl;
+            cout << "1. For Chakwal     |  2. For Karachi "<<endl;
+            cout << "3. For Lahore      |  4. For Faislabad"<<endl;
+            cout << "5. For Gujranwala  |  6. For Sahiwal"<<endl;
+            cout << "7. For Sargodha    |  8. For Multan"<<endl;
+            cout << "9. For DG Khan     |  10. For Sialkot"<<endl;
+            cout << "11. For Jehlum     |  12. For Rawlakot"<<endl;
+            cout << "13. For Hyderabad  |  14. For Quetta"<<endl;
+            cout << "15. For Peshawar   | Your choice: ";
+            int a;
+            cin >> a;
+            destIndex.push_back(a);
+            
 
-            askForJourney();
+
+            askForJourney(newJourney);
         }
         else if(option == 2){
-            // shortest_path.clear();
-            // alternative_paths.clear();
-            // findpaths(gph,source,destIndex[0],16);
-            // destIndex.erase(destIndex.begin());
+            shortest_path.clear();
+            alternative_paths.clear();
+            findpaths(gph,source,destIndex[0],16);
+            destIndex.erase(destIndex.begin());
             deliverJourneys();
-            // alternatePaths = N;
+            alternatePaths = N;
             
         }
         else if(option == 3){
