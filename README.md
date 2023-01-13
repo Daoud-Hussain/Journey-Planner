@@ -1,2 +1,2 @@
 # Journey-Planner
-A console application to plan your journeys across 60 cities. 
+A console-based application made using C++ data-structures to plan your journeys across 60 cities. 
