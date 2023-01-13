@@ -11,12 +11,21 @@ int N = 5;
 vector<vector<int>> shortest_path;
 vector<vector<int>> alternative_paths;
 
-string branches[16] = {"Islamabad","Chakwal","Karachi","Lahore","Faislabad","Gujranwala","Sahiwal","Sargodha","Multan", "DG Khan" ,"Sialkot","Jehlum", "Rawlakot", "Hydrabad", "Quetta", "Peshawar"};
+string branches[61] = {"Islamabad","Chakwal","Karachi","Lahore"
+,"Faislabad","Gujranwala","Sahiwal","Sargodha","Multan", "DG Khan" ,
+"Sialkot","Jehlum", "Rawlakot", "Hydrabad", "Quetta", "Peshawar", "Bagh","Sawabi","Tandoadama","Bhawalpur","layyah","Bhawalnagar",
+"Wazirabad","Mirpurkhass","Kotaddu", "Ghotki" ,
+"Mirpur","chaman", "Mansehra", "Arifwala", "Mianwali", "Khushab",
+"Kasuur","Attock","Abbotabad","Sadiaqabad","Mardan","Gujjrat","Hasilpur",
+"Jatio","Pakpattan", "Baadiin" ,
+"Rahimyarkhan","Jhang", "Charsada", "Jajja", "Khankot", "Jaranwala","Gojra",
+"Muzafargarh","DIkhan","Narowal","Larkana","Sakhuur","Veharii","Gilgit","Bakkhar", "Nawabshah" ,
+"Umerkot","Texila", "Kohat"};
 struct JourneyList
 {
     string name;                         // Variable to store Passenger name
-    string source;                        // Variable to store Passenger phone number
-    string destination;                   // Variable to store Passenger phone number
+    string source;                        // Variable to store Passenger Source
+    string destination;                   // Variable to store Passenger destination
     string phone;                        // Variable to store Passenger phone number
     JourneyList* next;
 };
@@ -26,20 +35,8 @@ JourneyList* last;
 // Working functions
 void askForJourney(JourneyList* newJourney)
 {   
-    // JourneyList *newJourney = new JourneyList();
     //Incase of empty nodes (No Journeys)
     if(first == NULL){
-        // int choice, option;
-        
-        // cout<< "************* Journey Details: ****************\n";
-        // cout<<"Enter passenger name: ";
-        // cin>>newJourney->name;
-        // cout<<"Enter passenger phone: ";
-        // cin>>newJourney->phone;
-        // cout<<"Enter passenger Source: ";
-        // cin>>newJourney->source;
-        // cout<<"Enter passenger destination: ";
-        // cin>>newJourney->destination;
 
         //Linking linkedlist nodes
         newJourney->next = NULL;
@@ -48,42 +45,11 @@ void askForJourney(JourneyList* newJourney)
     }
 
     else {
-        // int choice, option;
-        // bool flag = true;
-        
-        // cout<< "************* Journey Details: ****************\n";
-        // cout<<"Enter passenger name: ";
-        // cin>>newJourney->name;
-        // cout<<"Enter passenger phone: ";
-        // cin>>newJourney->phone;
-        // cout<<"Enter passenger Source: ";
-        // cin>>newJourney->source;
-        // cout<<"Enter passenger destination: ";
-        // cin>>newJourney->destination;
 
         //Linking linkedlist nodes
         last->next = newJourney;
         newJourney->next = NULL;
         last = newJourney;
-        
-        //Checking if no more than four Journeys are placed
-        // if(count< 4){
-        //     cout<<endl;
-        //     int choice, option;
-        //     bool flag = true;
-
-        //     cout << "************* Journey Details: ****************\n";
-        //     cout<<"Enter 1 to go Islamabad: "<<endl;
-            
-        //     //Linking linkedlist nodes
-        //     last->next = newJourney;
-        //     newJourney->next = NULL;
-        //     last = newJourney;
-        // }
-        // else{
-        //     cout<<"Four Journeys are allready being prepared!! Please Wait!!";
-        //     cout<<endl<<endl;
-        // }
     }   
     
 }
@@ -123,6 +89,7 @@ void deliverJourneys(){
             for(int j=0; j<alternative_paths[i].size(); j++){
                 if(j == alternative_paths[i].size()-1){
                     cout<<branches[alternative_paths[i][j]]<<" ";
+        
                 }
                 else{
                     cout<<branches[alternative_paths[i][j]]<<"-->";
@@ -150,11 +117,11 @@ void deliverJourneys(){
 //======================================GLOBAL VARIABLES==========================================================
 const int INF = 1000;
 string dest;
-vector<int>gph[16];
-int graph[16][16];
-int graphtime[16][16];
-int visited[16];
-int parent[16];
+vector<int>gph[61];
+int graph[61][61];
+int graphtime[61][61];
+int visited[61];
+int parent[61];
 int source;
 string start =branches[source];
 //================================BASIC IMPLEMENTATION OF GRAPHS==================================================
@@ -233,10 +200,14 @@ void findpaths(vector<int> g[], int source, int destination, int v) //Through BF
 }
 
 
+
+    
+
+//Main method starting here!!
 int main()
 {   
     //Calling code for graphs
-    int distance[16];
+    int distance[61];
 
     //Adding nodes distance with other nodes
 	addEdgeDistance(1,2,5);
@@ -264,6 +235,58 @@ int main()
     addEdgeDistance(12,15,4);
     addEdgeDistance(13,15,5);
     addEdgeDistance(13,16,7);
+    // ------------------------------------------------------------------------
+    addEdgeDistance(1,16,7);
+    addEdgeDistance(16,17,8);
+    addEdgeDistance(17,18,3);
+    addEdgeDistance(18,19,6);
+     addEdgeDistance(19,61,3);
+     addEdgeDistance(19,53,7);
+     addEdgeDistance(7,20,6);
+     addEdgeDistance(20,37,5);	
+    addEdgeDistance(20,21,3);	
+     addEdgeDistance(21,22,2);
+     addEdgeDistance(22,24,5);
+     addEdgeDistance(22,23,4);
+     addEdgeDistance(24,25,7);
+     addEdgeDistance(25,26,15);
+     addEdgeDistance(26,27,6);
+     addEdgeDistance(27,28,7);
+     addEdgeDistance(28,29,5);
+     addEdgeDistance(29,32,6);
+     addEdgeDistance(30,31,9);
+     addEdgeDistance(31,32,5);
+    // //-----------------------------------------------------------------------
+     addEdgeDistance(31,43,13);
+     addEdgeDistance(32,33,4);
+     addEdgeDistance(33,34,7);
+     addEdgeDistance(34,35,2);
+     addEdgeDistance(35,36,1);
+     addEdgeDistance(36,58,14);	
+     addEdgeDistance(43,42,13);
+     addEdgeDistance(43,44,10);
+     addEdgeDistance(42,41,12);
+     addEdgeDistance(44,45,3);
+     addEdgeDistance(44,46,19);
+     addEdgeDistance(40,39,7);
+     addEdgeDistance(39,58,12);
+     addEdgeDistance(58,38,7);
+     addEdgeDistance(38,37,12);
+     addEdgeDistance(57,56,5);
+     addEdgeDistance(56,55,5);
+     addEdgeDistance(55,59,3);
+     addEdgeDistance(55,51,10);
+     addEdgeDistance(59,60,5);
+     addEdgeDistance(49,48,7);	
+     addEdgeDistance(48,47,8);
+     addEdgeDistance(47,46,6);
+     addEdgeDistance(49,50,7);
+     addEdgeDistance(50,51,9);
+     addEdgeDistance(51,52,8);
+     addEdgeDistance(52,53,2);
+     addEdgeDistance(53,54,7);
+    addEdgeDistance(40,41,2);
+    
 	
     //Adding graph edges
 	add_edge(gph,0,5);
@@ -294,8 +317,60 @@ int main()
 	add_edge(gph,12,13);
 	add_edge(gph,13,15);
 
-	    
-
+    //.......................................	
+    add_edge(gph,1,16);
+    add_edge(gph,16,17);
+    add_edge(gph,17,18);
+	add_edge(gph,18,19);
+	add_edge(gph,19,53);
+	add_edge(gph,19,61);
+	add_edge(gph,19,6);
+	add_edge(gph,53,52);
+	add_edge(gph,53,54);
+	add_edge(gph,52,51);
+	add_edge(gph,51,54);
+	add_edge(gph,51,50);
+	add_edge(gph,51,55);
+	add_edge(gph,49,48);
+	add_edge(gph,48,47);
+	add_edge(gph,47,46);
+	add_edge(gph,46,44);
+	add_edge(gph,43,44);
+	add_edge(gph,44,45);
+	add_edge(gph,42,43);
+	add_edge(gph,42,41);
+	add_edge(gph,41,33);
+    add_edge(gph,40,39);
+	add_edge(gph,39,58);
+	add_edge(gph,58,38);
+	add_edge(gph,58,36);
+	add_edge(gph,35,36);
+	add_edge(gph,22,23);
+	add_edge(gph,21,22);
+	add_edge(gph,21,20);
+	add_edge(gph,20,7);
+	add_edge(gph,30,31);
+	add_edge(gph,31,32);
+	add_edge(gph,32,29);
+	add_edge(gph,32,33);
+	add_edge(gph,28,29);
+	add_edge(gph,28,27);
+	add_edge(gph,26,27);
+	add_edge(gph,25,26);
+	add_edge(gph,24,25);
+    add_edge(gph,57,56);
+    add_edge(gph,22,24);
+    add_edge(gph,34,35);
+    add_edge(gph,33,34);
+    add_edge(gph,37,38);
+    add_edge(gph,55,59);
+    add_edge(gph,59,60);
+    add_edge(gph,49,50);
+    add_edge(gph,55,56);
+    add_edge(gph,40,41);
+    
+    
+	
     bool flag = true;
     vector<int> destIndex;
     while (flag){
@@ -312,27 +387,34 @@ int main()
 
         JourneyList *newJourney = new JourneyList();
         if(option == 1){
-            // Passenger credentials
-            // askForJourney();
-            // cout<<endl<<endl;
             
             JourneyList *newJourney = new JourneyList();
             int choice, option;
-            
-            cout<< "************* Journey Details: ****************\n";
-            cout<<"Enter passenger name: ";
+            cout<< "<<<<************************************* Journey Path Details: *********************************************>>>>\n";
+            cout<<"Enter passengers name here : ";
             cin>>newJourney->name;
-            cout<<"Enter passenger phone: ";
+            cout<<"Enter passenger Contact Number: ";
             cin>>newJourney->phone;
-            cout << "Enter your destination: "<<endl;
-            cout << "1. For Chakwal     |  2. For Karachi "<<endl;
-            cout << "3. For Lahore      |  4. For Faislabad"<<endl;
-            cout << "5. For Gujranwala  |  6. For Sahiwal"<<endl;
-            cout << "7. For Sargodha    |  8. For Multan"<<endl;
-            cout << "9. For DG Khan     |  10. For Sialkot"<<endl;
-            cout << "11. For Jehlum     |  12. For Rawlakot"<<endl;
-            cout << "13. For Hyderabad  |  14. For Quetta"<<endl;
-            cout << "15. For Peshawar   | Your choice: ";
+            cout << "Enter your destination Here: "<<endl<<endl;
+            cout << "1. For Chakwal              |  2. For Karachi             |  3. For Lahore                |  4. For Faislabad"<<endl;
+            cout << "5. For Gujranwala           |  6. For Sahiwal             |  7. For Sargodha              |  8. For Multan"<<endl;      
+	        cout << "9. For DG Khan              |  10. For Sialkot            |  11. For Jehlum               |  12. For Rawlakot"<<endl;
+            cout << "13. For Hyderabad           |  14. For Quetta             |  15. For Peshawar             |"<<endl;
+			cout << "16. For Bagh                |  17. For Sawabi             |  18. For Tandoadam            |  19. For Bahawalpur"<<endl;
+			cout << "20. For Laayah              |  21. For bhawalnagar        |  22. For Wazirabad            |  23. For MirpurKhas"<<endl;
+			cout << "24. For KotAddu             |  25. For Ghotki              |  26. For Mirpur               |  27. For Chaman"<<endl;
+			cout << "28. For Mansehra            |  29. For Arifwala           |  30. For Mianwali             |  31. For Khushab"<<endl;
+			cout << "32. For Kasur               |  33. For Attock             |  34. For Abbotabad            |  35. For Sadaqabad"<<endl;
+			cout << "36. For Mardan              |  37. For Gujrat             |  38. For Hasilpur             |  39. For Jatoi"<<endl;
+			cout << "40. For Pakpatten           |  41. For baddin             |  42. For Rahimyarkhan         |  43. For Jhangg"<<endl;
+			cout << "44. For Charsada            |  45. For Jajja              |  46. For Khankot              |  47. For Jaranwala"<<endl;
+			cout << "48. For Gojra               |  49. For Muzafargarh        |  50. For DIkhan               |  51. For Narowal"<<endl;
+			cout << "52. For Larkana             |  53. For sakhur             |  54. For Vehari               |  55. For Gilgit"<<endl;
+			cout << "56. For Bakhar              |  57. For Nawabshah          |  58. For Umerkot              |  59. For Texila"<<endl;            
+			                                 cout<<"60. For Kohat"<<endl;              
+			
+			cout<< "<<<<********************************************************************************************************>>>>\n\n";
+			cout<< "Your choice: ";
             int a;
             cin >> a;
             destIndex.push_back(a);
@@ -351,7 +433,7 @@ int main()
             
         }
         else if(option == 3){
-            cout<<"Thank you for using FavouritePanda!! Have a great day!!!"<<endl;
+            cout<<"Thank you for using Journey Planner!! Have a great day!!!"<<endl;
             flag = false;
         }
         else{
